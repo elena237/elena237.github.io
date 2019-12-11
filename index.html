@@ -21,6 +21,7 @@
         <p id="snacks">Snacks: </p>
         &#8226; &nbsp; <a id = "snack1" class="snack" href="https://mariaesschmecktmir.com/schnelle-pizzaschnecken/" target="_blank">Pizzaschnecken</a>
         <br/> <br/> <button id="buttonAdd">Add :)</button>
+        <br/> <br/> <button id="buttonCopy">Copy :)</button>
     </div>
 
 
@@ -47,6 +48,13 @@
         </div>
     </div>
 
+    <div id="overlayCopy" class="overlay" style="display: none">
+        <div class ="anzeige" id ="anzeigeStart">
+           <button class = "eingabe" id = "byeButtonCopy">Schließen</button>
+           <textarea id="ausgabeHTML"></textarea>
+        </div>
+    </div>
+
 
 </body>
 <script>  
@@ -58,6 +66,11 @@
     $(document).ready( function() { 
         $("#buttonAdd").on("click", function() {
             $("#overlayAdd").show();
+        });
+        $("#buttonCopy").on("click", function() {
+            $("#overlayCopy").show();
+            $("#ausgabeHTML").text($('html').html());
+            console.log($('html').html());
         });
         $("#goButton").on("click", function() {    
 
@@ -81,7 +94,11 @@
             }
             $("#overlayAdd").hide();
         });
-        $("#byeButton").on("click", function() {         
+        $("#byeButtonCopy").on("click", function() {         
+            $("#overlayCopy").hide();
+            $("#buttonCopy").show();
+        });
+         $("#byeButton").on("click", function() {         
             $("#overlayAdd").hide();
         });
     });
@@ -89,7 +106,11 @@
 </script>
 <style type="text/css">
 
-
+#ausgabeHTML {
+    width: 670px;
+    height: 470px;
+    margin: 11px;
+}
 
 * {
     font-family: 'Indie Flower', cursive;
@@ -110,6 +131,9 @@
 }
 #eingabeNav {    
     justify-content: center;
+}
+#byeButtonCopy {
+    margin-left: 570px;
 }
 a {
     text-decoration: none;    
@@ -143,6 +167,19 @@ button:active {
     top:1px;
 }
 #overlayAdd {
+    position: fixed; /* Sit on top of the page content */
+    display: block; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: grab; /* Add a grab on hover */
+}
+#overlayCopy {
     position: fixed; /* Sit on top of the page content */
     display: block; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
